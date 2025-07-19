@@ -16,7 +16,7 @@ const Home = () => {
 
     setIsCreating(true);
     try {
-      const response = await fetch('/api/rooms', {
+      const response = await fetch('/api/room', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
