@@ -10,7 +10,7 @@ const io = socketIo(server, {
   cors: {
     origin: process.env.NODE_ENV === 'production' 
       ? ["https://meetup-frontend-ajk6.onrender.com", "http://localhost:3000"]
-      : "http://localhost:3000",
+      : "http://localhost:3000"
     methods: ["GET", "POST"]
   }
 });
