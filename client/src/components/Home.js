@@ -8,30 +8,41 @@ const Home = () => {
   const [isJoining, setIsJoining] = useState(false);
   const navigate = useNavigate();
 
-  const createRoom = async () => {
-    if (!username.trim()) {
-      alert('Please enter your name');
-      return;
+const createRoom = async () => {
+  if (!username.trim()) {
+    alert('Please enter your name');
+    return;
+  }
+
+  setIsCreating(true);
+  try {
+    const response = await fetch('/api/rooms', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Try to read plain text if JSON fails
+      throw new Error(`Server error: ${response.status} ${errorText}`);
     }
 
-    setIsCreating(true);
-    try {
-      const response = await fetch('/api/rooms', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = await response.json();
-      navigate(`/room/${data.roomId}`, { state: { username } });
-    } catch (error) {
-      console.error('Error creating room:', error);
-      alert('Failed to create room. Please try again.');
-    } finally {
-      setIsCreating(false);
+    const data = await response.json();
+    if (!data.roomId) {
+      throw new Error('No roomId returned by the server');
     }
-  };
 
+    navigate(`/room/${data.roomId}`, { state: { username } });
+  } catch (error) {
+    console.error('Error creating room:', error);
+    alert('Failed to create room. Please try again.');
+  } finally {
+    setIsCreating(false);
+  }
+};
+
+  
   const joinRoom = async () => {
     if (!username.trim() || !roomId.trim()) {
       alert('Please enter your name and room ID');
