@@ -1,0 +1,19 @@
+@echo off
+echo Starting Meet Up application...
+echo.
+
+echo Starting server...
+start "Meet Up Server" cmd /k "cd server && npm start"
+
+echo Waiting for server to start...
+timeout /t 3 /nobreak >nul
+
+echo Starting client...
+start "Meet Up Client" cmd /k "cd client && npm start"
+
+echo.
+echo Both server and client are starting...
+echo The application will be available at http://localhost:3000
+echo.
+echo Press any key to close this window...
+pause >nul 
