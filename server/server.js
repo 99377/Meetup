@@ -8,7 +8,9 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.NODE_ENV === 'production' 
+      ? ["https://your-frontend-name.onrender.com", "http://localhost:3000"]
+      : "http://localhost:3000",
     methods: ["GET", "POST"]
   }
 });
