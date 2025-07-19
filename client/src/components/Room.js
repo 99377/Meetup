@@ -37,7 +37,8 @@ const Room = () => {
     }
 
     // Initialize Socket.IO connection
-    const newSocket = io('http://localhost:5000', {
+    const serverUrl = process.env.REACT_APP_SERVER_URL || 'http://localhost:5000';
+    const newSocket = io(serverUrl, {
       timeout: 5000,
       reconnection: true,
       reconnectionAttempts: 5,
