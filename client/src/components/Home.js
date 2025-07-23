@@ -16,7 +16,7 @@ const createRoom = async () => {
 
   setIsCreating(true);
   try {
-    const response = await fetch('/api/rooms', {
+    const response = await fetch('https://meetup-backend-5kbp.onrender.com/api/rooms', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ const createRoom = async () => {
 
     setIsJoining(true);
     try {
-      const response = await fetch(`/api/rooms/${roomId}`);
+      const response = await fetch(`https://meetup-backend-5kbp.onrender.com/api/rooms/${roomId}`);
       const data = await response.json();
       
       if (data.exists) {
