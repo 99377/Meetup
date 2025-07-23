@@ -1,6 +1,8 @@
 # Meet Up - Video Conferencing App
 
 A real-time video conferencing web application built with WebRTC, React, and Node.js. Similar to Google Meet, this app allows users to create and join video meetings with peer-to-peer connections.
+🔗 **Live Demo:** [MeetUp - Video Conferencing App](https://meetup-frontend-ajk6.onrender.com)
+
 
 ## Features
 
