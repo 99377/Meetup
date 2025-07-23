@@ -17,6 +17,10 @@ const io = socketIo(server, {
 
 // Middleware
 app.use(cors());
+app.use(cors({
+  origin: "https://meetup-frontend-ajk6.onrender.com"
+}));
+
 app.use(express.json());
 
 // Store active rooms
